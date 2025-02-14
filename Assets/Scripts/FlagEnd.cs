@@ -33,6 +33,12 @@ public class FlagEnd : MonoBehaviour
         {
             audioSource.Play();
         }
+        StartCoroutine(LoadSceneAfterDelay(3f));  // Start coroutine with a 3-second delay
+    }
+
+    IEnumerator LoadSceneAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
         SceneManager.LoadScene("Parker 1");
     }
 }
