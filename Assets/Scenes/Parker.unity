@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saw: {fileID: 8300000, guid: e824dffb1a50e9341875cc690cb42104, type: 3}
+  sceneNext: LevelSelect
 --- !u!65 &565896071
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -737,6 +738,7 @@ MonoBehaviour:
   form: 0
   speed: 5
   floatSpeed: 5
+  waterSpeedReduction: 0.8
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
