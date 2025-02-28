@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
             body.velocity = new Vector3(Input.GetAxis("Horizontal") * speed, body.velocity.y, body.velocity.z);
         }
         else if (form == 1) {
-            body.velocity = new Vector3(Input.GetAxis("Horizontal") * speed, floatSpeed, body.velocity.z);
+            body.velocity = new Vector3(body.velocity.x, floatSpeed, body.velocity.z);
         }
         else if (form == 2) {
             body.velocity = new Vector3(Input.GetAxis("Horizontal") * speed  * waterSpeedReduction, body.velocity.y, body.velocity.z);
