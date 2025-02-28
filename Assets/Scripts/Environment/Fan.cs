@@ -7,6 +7,7 @@ public class Fan : MonoBehaviour
     public bool isInBox;
     private Rigidbody playerBody;
     private Quaternion fanRot;
+    [SerializeField] public float fanSpeed = 100;
     void Start()
     {
         fanRot = transform.parent.gameObject.transform.rotation;
@@ -15,7 +16,7 @@ public class Fan : MonoBehaviour
     void Update(){
         if(isInBox){
             if (playerBody != null) {
-                Vector3 force = new Vector3(-100, 0, 0);
+                Vector3 force = new Vector3(-1 * fanSpeed, 0, 0);
                 playerBody.AddForce(fanRot * force);
             }
         }
