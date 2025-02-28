@@ -7,9 +7,11 @@ using UnityEngine.SceneManagement;
 public class FlagEnd : MonoBehaviour
 {
     //Add this Script Directly to The Death Zone
+
         [SerializeField] private AudioClip saw;    // Add your Audi Clip Here
         [SerializeField] private string nextLevel;    // Next Level
         private AudioSource audioSource;
+
 
 
     // This Will Configure the  AudioSource Component
@@ -40,6 +42,7 @@ public class FlagEnd : MonoBehaviour
     IEnumerator LoadSceneAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
+
         SceneManager.LoadScene(nextLevel);
     }
 }

@@ -8,7 +8,7 @@ public class NewBehaviourScript1 : MonoBehaviour
     // Start is called before the first frame update
     public void StartGame()
     {
-        SceneManager.LoadScene("Master");
+        SceneManager.LoadScene("LevelSelect");
     }
 
     public void QuitGame()
@@ -16,6 +16,9 @@ public class NewBehaviourScript1 : MonoBehaviour
         Application.Quit();
     }
 
-    // Update is called once per frame
-  
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
 }
