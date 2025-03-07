@@ -223,6 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInBox: 0
   fanSpeed: 10
+
 --- !u!1 &2363528070092898784
 GameObject:
   m_ObjectHideFlags: 0
