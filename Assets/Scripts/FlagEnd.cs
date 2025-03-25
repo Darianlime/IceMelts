@@ -11,6 +11,7 @@ public class FlagEnd : MonoBehaviour
         [SerializeField] private AudioClip saw;    // Add your Audi Clip Here
         [SerializeField] private string nextLevel;    // Next Level
         private AudioSource audioSource;
+        [SerializeField] private Fade fadeScript;
 
 
 
@@ -36,13 +37,18 @@ public class FlagEnd : MonoBehaviour
         {
             audioSource.Play();
         }
-        StartCoroutine(LoadSceneAfterDelay(3f));  // Start coroutine with a 3-second delay
+        StartCoroutine(FadeAndLoadScene(1f));  // Start coroutine with a 3-second delay
     }
 
-    IEnumerator LoadSceneAfterDelay(float delay)
+    IEnumerator FadeAndLoadScene(float delay)
     {
-        yield return new WaitForSeconds(delay);
+        if (fadeScript != null)
+        {
+            fadeScript.FadeOut(); // Start fading out
+            yield return new WaitForSeconds(fadeScript.fadeDuration); // Wait for fade duration
+        }
 
+        yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(nextLevel);
     }
 }
