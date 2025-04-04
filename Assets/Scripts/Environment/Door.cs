@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public Vector3 originalPos;
+    private Vector3 originalPos;
     [SerializeField] public Vector3 nextPos;
     [SerializeField] public Torch torch;
     [SerializeField] public PressurePlate plate;
