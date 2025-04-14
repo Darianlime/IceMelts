@@ -6,6 +6,7 @@ using UnityEngine;
 public class PressurePlate : MonoBehaviour
 {
     public Boolean pressed = false;
+    private Boolean on = false;
     public event Action activate;
     public event Action deactivate;
     public Vector3 originalPos;
@@ -26,10 +27,19 @@ public class PressurePlate : MonoBehaviour
         if(other.tag == "Player") {
             if (!pressed) {
                 pressed = true;
-                activate.Invoke();
                 Vector3 newPos = originalPos;
-                newPos.y = originalPos.y - 0.30f;
-                transform.parent.gameObject.transform.position = newPos;
+                if (!on) {
+                    activate.Invoke();
+                    on = true;
+                    newPos.y = originalPos.y - 0.30f;
+                    transform.parent.gameObject.transform.position = newPos;
+                }
+                else {
+                    deactivate.Invoke();
+                    on = false;
+                    newPos.y = originalPos.y - 0.30f;
+                    transform.parent.gameObject.transform.position = newPos;
+                }
             }
         }
     }
@@ -37,8 +47,8 @@ public class PressurePlate : MonoBehaviour
     void OnTriggerExit(Collider other){
         if(other.tag == "Player") {
             pressed = false;
-            deactivate.Invoke();
             transform.parent.gameObject.transform.position = originalPos;
+
         }
     }
 }
