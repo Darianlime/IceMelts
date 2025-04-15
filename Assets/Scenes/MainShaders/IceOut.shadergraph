@@ -26,6 +26,9 @@
         },
         {
             "m_Id": "2d334487f57e48e7bcb0effdf2309c79"
+        },
+        {
+            "m_Id": "8df7c853f1e147d1ba0fdf0220acfea8"
         }
     ],
     "m_Keywords": [],
@@ -167,6 +170,9 @@
         },
         {
             "m_Id": "59d7ebc607394b99aa6b1d354b4dd88e"
+        },
+        {
+            "m_Id": "50a5e92603c64cf19a369384e162f56e"
         }
     ],
     "m_GroupDatas": [],
@@ -338,6 +344,20 @@
                     "m_Id": "8f262d4c69734d568317ad4cdc6138ad"
                 },
                 "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "50a5e92603c64cf19a369384e162f56e"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "81546aa1dafb454aba85317ab83d38c9"
+                },
+                "m_SlotId": -57403881
             }
         },
         {
@@ -1495,6 +1515,9 @@
         },
         {
             "m_Id": "2d334487f57e48e7bcb0effdf2309c79"
+        },
+        {
+            "m_Id": "8df7c853f1e147d1ba0fdf0220acfea8"
         }
     ]
 }
@@ -1800,9 +1823,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -350.0,
-            "y": -92.0,
-            "width": 208.00003051757813,
+            "x": -349.9999694824219,
+            "y": -160.99998474121095,
+            "width": 208.0,
             "height": 301.9999694824219
         }
     },
@@ -2112,6 +2135,42 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "50a5e92603c64cf19a369384e162f56e",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -1527.0001220703125,
+            "y": 883.0,
+            "width": 136.0,
+            "height": 34.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "5ff6306e4e994222994bf34d2ee36bfc"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "8df7c853f1e147d1ba0fdf0220acfea8"
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "511397c930374dd4b06bb77fe06e2e16",
     "m_Id": 2,
@@ -2278,6 +2337,31 @@
     "m_StageCapability": 3,
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
+    "m_ObjectId": "5ff6306e4e994222994bf34d2ee36bfc",
+    "m_Id": 0,
+    "m_DisplayName": "WaterColor",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
     "m_Labels": []
 }
 
@@ -2932,13 +3016,16 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1317.0,
-            "y": 818.0,
-            "width": 208.0,
-            "height": 279.0
+            "x": -1317.0001220703125,
+            "y": 818.0000610351563,
+            "width": 228.0,
+            "height": 278.99993896484377
         }
     },
     "m_Slots": [
+        {
+            "m_Id": "9e18e41996af4bbcb0a7242b44491f94"
+        },
         {
             "m_Id": "1fd591c8ed37411f867bfd92e23aec71"
         }
@@ -2952,8 +3039,14 @@
         "m_SerializableColors": []
     },
     "m_SerializedSubGraph": "{\n    \"subGraph\": {\n        \"fileID\": -5475051401550479605,\n        \"guid\": \"b4987e7e51a58034ca5d5ef741393034\",\n        \"type\": 3\n    }\n}",
-    "m_PropertyGuids": [],
-    "m_PropertyIds": [],
+    "m_PropertyGuids": [
+        "f2b0f951-29aa-4138-8cf3-87330c566562",
+        "2e219bf0-5bfc-43a7-bb4b-1adca09d084d"
+    ],
+    "m_PropertyIds": [
+        -496339589,
+        -57403881
+    ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
 }
@@ -3194,6 +3287,36 @@
 }
 
 {
+    "m_SGVersion": 3,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
+    "m_ObjectId": "8df7c853f1e147d1ba0fdf0220acfea8",
+    "m_Guid": {
+        "m_GuidSerialized": "fa1215e4-fe89-4963-abe0-380283265548"
+    },
+    "m_Name": "WaterColor",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "WaterColor",
+    "m_DefaultReferenceName": "_WaterColor",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "r": 0.1921568661928177,
+        "g": 0.7254902124404907,
+        "b": 0.9607843160629273,
+        "a": 1.0
+    },
+    "isMainColor": false,
+    "m_ColorMode": 0
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.MultiplyNode",
     "m_ObjectId": "8f262d4c69734d568317ad4cdc6138ad",
@@ -3324,6 +3447,31 @@
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
+    "m_ObjectId": "9e18e41996af4bbcb0a7242b44491f94",
+    "m_Id": -57403881,
+    "m_DisplayName": "WaterColor",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_WaterColor",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.19215688109397889,
+        "y": 0.7254902124404907,
+        "z": 0.960784375667572,
+        "w": 1.0
     },
     "m_DefaultValue": {
         "x": 0.0,

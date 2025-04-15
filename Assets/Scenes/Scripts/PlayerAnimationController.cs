@@ -7,14 +7,16 @@ public enum State {
     Water,
     Smoke
 }
+
 public class PlayerAnimationController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public SmokePlaneCollider smokePlaneCollider;
     public bool[] getButtonPress;
     private State oldState;
     
     private void Start()
     {
+        smokePlaneCollider = GetComponent<SmokePlaneCollider>();
         oldState = State.Ice;
         getButtonPress = new bool[]
         {
@@ -24,7 +26,6 @@ public class PlayerAnimationController : MonoBehaviour
         };
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.J) && getButtonPress[0]) {
@@ -34,6 +35,7 @@ public class PlayerAnimationController : MonoBehaviour
             ChangeAnimation(State.Water);
         }
         if (Input.GetKeyDown(KeyCode.L) && getButtonPress[2]) {
+            smokePlaneCollider.PlacePlaneCollider();
             ChangeAnimation(State.Smoke);
         }
     }
@@ -60,4 +62,5 @@ public class PlayerAnimationController : MonoBehaviour
         oldState = newState;
         getButtonPress[(int)state] = false;
     }
+
 }

@@ -117,7 +117,7 @@ Material:
     - _IceToWater: 0
     - _METALNESS: 0
     - _Metallic: 0
-    - _Morph: 0
+    - _Morph: 0.3
     - _Normals: 0.6
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -145,4 +145,5 @@ Material:
     - _Emission: {r: 1, g: 1, b: 1, a: 0}
     - _REFLECTIONS_COLOR: {r: 1, g: 1, b: 1, a: 1}
     - _ScrollSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _WaterColor: {r: 0, g: 0.35856742, b: 0.5188679, a: 1}
   m_BuildTextureStacks: []

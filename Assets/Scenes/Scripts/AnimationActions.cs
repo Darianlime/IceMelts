@@ -17,6 +17,8 @@ public class AnimationActions : MonoBehaviour
     public event Action WaterFreeze;
     public event Action SmokeEmitt;
     public event Action SmokeStop;
+    public event Action IceCollider;
+    public event Action WaterCollider;
     public Dictionary<State, Dictionary<State, List<Action>>> iceAnimations = new();
     public Dictionary<State, Dictionary<State, List<Action>>> waterAnimations = new();
     public Dictionary<State, Dictionary<State, List<Action>>> smokeAnimations = new();
@@ -31,18 +33,18 @@ public class AnimationActions : MonoBehaviour
     void Start()
     {
         //Ice Actions
-        iceStateAnim.Add(State.Water, new List<Action> { IceMelt });
-        iceStateAnim.Add(State.Smoke, new List<Action> { SmokeEmitt, IceDissolve });
+        iceStateAnim.Add(State.Water, new List<Action> { WaterCollider, IceMelt});
+        iceStateAnim.Add(State.Smoke, new List<Action> { IceCollider, SmokeEmitt, IceDissolve });
         iceAnimations.Add(State.Ice, iceStateAnim);
 
         //Water Actions
-        waterStateAnim.Add(State.Ice, new List<Action> { WaterFreeze });
-        waterStateAnim.Add(State.Smoke, new List<Action> { SmokeEmitt, IceDissolve, WaterFreeze});
+        waterStateAnim.Add(State.Ice, new List<Action> { IceCollider, WaterFreeze});
+        waterStateAnim.Add(State.Smoke, new List<Action> { IceCollider, SmokeEmitt, IceDissolve });
         waterAnimations.Add(State.Water, waterStateAnim);
        
         //Smoke Actions
-        smokeStateAnim.Add(State.Ice, new List<Action> { SmokeStop, IceGrow });
-        smokeStateAnim.Add(State.Water, new List<Action> { SmokeStop, IceGrow, IceMelt});
+        smokeStateAnim.Add(State.Ice, new List<Action> { IceCollider, SmokeStop, IceGrow });
+        smokeStateAnim.Add(State.Water, new List<Action> { WaterCollider, SmokeStop, IceMelt});
         smokeAnimations.Add(State.Smoke, smokeStateAnim);
     }
 
@@ -58,7 +60,6 @@ public class AnimationActions : MonoBehaviour
 
     public State InvokeAnimation(State oldState, State newState) {
         List<Action> list = GetDictAnimation(oldState)[newState];
-        print (oldState + " " + newState + " " + list[0]);
         for (int i = 0; i < list.Count; i++) {
             list[i].Invoke();
         }

@@ -8,61 +8,75 @@ using UnityEngine;
 
 public class Ice : MonoBehaviour
 {
-
-    public Animator animatorIce;
-    public Animator animatorMeltOutside;
-    public Animator animatorMeltInside;
+    public Animator animatorOutside;
+    public Animator animatorInside;
+    public BoxCollider boxCollider;
+    public float x = 7.5f;
+    public float y = 0.5f;
+    public float yCenter = 0.23f;
     public SkinnedMeshRenderer meshRendererOutside;
     public SkinnedMeshRenderer meshRendererInside;
 
     private float startTime = 0f;
     private void Awake()
     {
-        animatorIce = GetComponent<Animator>();
         AnimationActions.current.IceGrow += GrowIce;
         AnimationActions.current.IceDissolve += DissolveIce;
         AnimationActions.current.IceMelt += MeltIce;
         AnimationActions.current.WaterFreeze += FreezeWater;
+        AnimationActions.current.IceCollider += IceCollider;
+        AnimationActions.current.WaterCollider += WaterCollider;
+    }
+
+    private void Start() {
+        boxCollider = GetComponent<BoxCollider>();
+    }
+
+    public void IceCollider() {
+        boxCollider.size = new Vector3(2.1f, 2.1f, 2.1f);
+        boxCollider.center = new Vector3(0, 1.05f, 0);
+    }
+
+    public void WaterCollider() {
+        boxCollider.size = new Vector3(7.5f, 0.5f, 2.1f);
+        boxCollider.center = new Vector3(0, 0.23f, 0);
     }
 
     public void GrowIce() {
-        startTime = animatorIce.GetCurrentAnimatorStateInfo(0).normalizedTime;
-        if (startTime > 1) {
-            startTime = 1;
-        }
-        animatorIce.CrossFadeInFixedTime("IceGrow", 0.5f, 0, 1 - startTime);
+        animatorOutside.CrossFade("IceGrowOutside", 0.5f, 0);
+        animatorInside.CrossFade("IceGrowInside", 0.5f, 0);
     }
 
     public void DissolveIce() {
-        if (startTime != 0) {
-            startTime = animatorIce.GetCurrentAnimatorStateInfo(0).normalizedTime;
-        }
-        if (startTime > 1) {
-            startTime = 0;
-        }
-        animatorIce.CrossFadeInFixedTime("IceDissolve", 0.5f, 0, startTime);
+        animatorInside.SetBool("GrowingContinuing", false);
+        animatorOutside.SetBool("GrowingContinuing", false);
+        animatorOutside.CrossFade("IceDissolveOutside", 0.5f, 0);
+        animatorInside.CrossFade("IceDissolveInside", 0.5f, 0);
     }
 
     public void MeltIce() {
-        // if (startTime != 0) {
-        //     startTime = animatorMeltOutside.GetCurrentAnimatorStateInfo(0).normalizedTime;
-        // }
-        // if (startTime > 1) {
-        //     startTime = 0;
-        // }
-        animatorMeltOutside.SetBool(Animator.StringToHash("isPressed"), false);
-        animatorMeltOutside.CrossFadeInFixedTime("IceToWaterOutside", 0.3f, 0, 0);
-        animatorMeltInside.SetBool(Animator.StringToHash("isPressed"), false);
-        animatorMeltInside.CrossFadeInFixedTime("IceToWaterInside", 0.3f, 0, 0);
-        animatorIce.SetBool(Animator.StringToHash("isPressed"), false);
-        animatorIce.CrossFadeInFixedTime("IceDissolveInside", 0.1f, 0, 0);
+        animatorInside.SetBool("GrowingContinuing", false);
+        animatorOutside.SetBool("GrowingContinuing", false);
+        if (animatorInside.GetCurrentAnimatorStateInfo(0).IsName("IceDissolveInside")) {
+            animatorInside.CrossFade("IceGrowInsideHelper", 0.2f, 0);
+            animatorOutside.CrossFade("IceGrowOutsideHelper", 0.2f, 0);
+        } else {
+            animatorInside.CrossFade("IceToWaterInside", 0.2f, 0);
+            animatorOutside.CrossFade("IceToWaterOutside", 0.2f, 0);
+        }
     }
 
     public void FreezeWater() {
-        animatorMeltOutside.SetBool(Animator.StringToHash("isPressed"), true);
-        animatorMeltInside.SetBool(Animator.StringToHash("isPressed"), true);
-        animatorIce.SetBool(Animator.StringToHash("isPressed"), true);
-        meshRendererInside.material.SetFloat("_Morph", meshRendererInside.material.GetFloat("_Morph"));
+        if (!animatorInside.GetCurrentAnimatorStateInfo(0).IsName("IceToWaterInside")) {
+            startTime = animatorInside.GetCurrentAnimatorStateInfo(0).normalizedTime;
+            animatorInside.CrossFade("IceGrowInsideHelper", 0.2f, 0, startTime);
+            animatorOutside.CrossFade("IceGrowOutsideHelper", 0.2f, 0, startTime);
+            animatorInside.SetBool("GrowingContinuing", true);
+            animatorOutside.SetBool("GrowingContinuing", true);
+        } else {
+            animatorInside.CrossFade("WaterToIceInside", 0.2f, 0);
+            animatorOutside.CrossFade("WaterToIceOutside", 0.2f, 0);
+        }
     }
 
     private void OnDisable() 
@@ -71,5 +85,7 @@ public class Ice : MonoBehaviour
         AnimationActions.current.IceDissolve -= DissolveIce;
         AnimationActions.current.IceMelt -= MeltIce;
         AnimationActions.current.WaterFreeze -= FreezeWater;
+        AnimationActions.current.IceCollider -= IceCollider;
+        AnimationActions.current.WaterCollider -= WaterCollider;
     }
 }
