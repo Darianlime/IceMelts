@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] public bool[] keys;
     [SerializeField] private int form = 0;
     [SerializeField] private float speed = 5;
     [SerializeField] private float floatSpeed = 5;
