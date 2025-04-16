@@ -4,8 +4,8 @@ using UnityEngine;
 
 public enum State {
     Ice,
-    Water,
-    Smoke
+    Smoke,
+    Water
 }
 
 public class PlayerAnimationController : MonoBehaviour
@@ -32,11 +32,11 @@ public class PlayerAnimationController : MonoBehaviour
             ChangeAnimation(State.Ice);
         }
         if (Input.GetKeyDown(KeyCode.K) && getButtonPress[1]) {
-            ChangeAnimation(State.Water);
-        }
-        if (Input.GetKeyDown(KeyCode.L) && getButtonPress[2]) {
             smokePlaneCollider.PlacePlaneCollider();
             ChangeAnimation(State.Smoke);
+        }
+        if (Input.GetKeyDown(KeyCode.L) && getButtonPress[2]) {
+            ChangeAnimation(State.Water);
         }
     }
 
@@ -46,11 +46,11 @@ public class PlayerAnimationController : MonoBehaviour
                 ChangeState(newState);
                 getButtonPress[0] = true;
                 break;
-            case State.Water:
+            case State.Smoke:
                 ChangeState(newState);
                 getButtonPress[1] = true;
                 break;
-            case State.Smoke:
+            case State.Water:
                 ChangeState(newState);
                 getButtonPress[2] = true;
                 break;
