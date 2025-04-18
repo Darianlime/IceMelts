@@ -22,8 +22,8 @@ public class Ice : MonoBehaviour
     {
         AnimationActions.current.IceGrow += GrowIce;
         AnimationActions.current.IceDissolve += DissolveIce;
-        AnimationActions.current.IceMelt += MeltIce;
-        AnimationActions.current.WaterFreeze += FreezeWater;
+        AnimationActions.current.IceMelt += IceToWater;
+        AnimationActions.current.WaterToIce += WaterToIce;
         AnimationActions.current.IceCollider += IceCollider;
         AnimationActions.current.WaterCollider += WaterCollider;
     }
@@ -54,7 +54,7 @@ public class Ice : MonoBehaviour
         animatorInside.CrossFade("IceDissolveInside", 0.5f, 0);
     }
 
-    public void MeltIce() {
+    public void IceToWater() {
         animatorInside.SetBool("GrowingContinuing", false);
         animatorOutside.SetBool("GrowingContinuing", false);
         if (animatorInside.GetCurrentAnimatorStateInfo(0).IsName("IceDissolveInside")) {
@@ -66,7 +66,7 @@ public class Ice : MonoBehaviour
         }
     }
 
-    public void FreezeWater() {
+    public void WaterToIce() {
         if (!animatorInside.GetCurrentAnimatorStateInfo(0).IsName("IceToWaterInside")) {
             startTime = animatorInside.GetCurrentAnimatorStateInfo(0).normalizedTime;
             animatorInside.CrossFade("IceGrowInsideHelper", 0.2f, 0, startTime);
@@ -83,8 +83,8 @@ public class Ice : MonoBehaviour
     {
         AnimationActions.current.IceGrow -= GrowIce;
         AnimationActions.current.IceDissolve -= DissolveIce;
-        AnimationActions.current.IceMelt -= MeltIce;
-        AnimationActions.current.WaterFreeze -= FreezeWater;
+        AnimationActions.current.IceMelt -= IceToWater;
+        AnimationActions.current.WaterToIce -= WaterToIce;
         AnimationActions.current.IceCollider -= IceCollider;
         AnimationActions.current.WaterCollider -= WaterCollider;
     }

@@ -28,14 +28,14 @@ public class PlayerAnimationController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J) && getButtonPress[0]) {
+        if (Input.GetKeyDown(KeyCode.L) && getButtonPress[0]) {
             ChangeAnimation(State.Ice);
         }
         if (Input.GetKeyDown(KeyCode.K) && getButtonPress[1]) {
             smokePlaneCollider.PlacePlaneCollider();
             ChangeAnimation(State.Smoke);
         }
-        if (Input.GetKeyDown(KeyCode.L) && getButtonPress[2]) {
+        if (Input.GetKeyDown(KeyCode.J) && getButtonPress[2]) {
             ChangeAnimation(State.Water);
         }
     }

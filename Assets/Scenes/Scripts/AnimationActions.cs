@@ -14,7 +14,7 @@ public class AnimationActions : MonoBehaviour
     public event Action IceGrow;
     public event Action IceDissolve;
     public event Action IceMelt;
-    public event Action WaterFreeze;
+    public event Action WaterToIce;
     public event Action SmokeEmitt;
     public event Action SmokeStop;
     public event Action IceCollider;
@@ -38,7 +38,7 @@ public class AnimationActions : MonoBehaviour
         iceAnimations.Add(State.Ice, iceStateAnim);
 
         //Water Actions
-        waterStateAnim.Add(State.Ice, new List<Action> { IceCollider, WaterFreeze});
+        waterStateAnim.Add(State.Ice, new List<Action> { IceCollider, WaterToIce});
         waterStateAnim.Add(State.Smoke, new List<Action> { IceCollider, SmokeEmitt, IceDissolve });
         waterAnimations.Add(State.Water, waterStateAnim);
        

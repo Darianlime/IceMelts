@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.ProBuilder.MeshOperations;
+using System.Drawing;
+using JetBrains.Annotations;
+using Unity.VisualScripting;
 
 public class CreateChainEditor : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject chain;
-    public GameObject parent;
+    public GameObject chainPhysics;
     public BoxCollider chainCollider;
     public int chainLength = 0;
     public int chainSize = 0;
@@ -19,24 +22,90 @@ public class CreateChainEditor : MonoBehaviour
         chainCollider = GetComponent<BoxCollider>();
     }
 
-    public void InstantiateChain() {
-        float chainLengthPos = 0;
-        for (int i = 0; i < chainLength; i++) {
-            GameObject chainObject = Instantiate(chain, parent.transform.position + new Vector3(chainLengthPos, 0, 0), new Quaternion(-180, 0, -180, 0), parent.transform);
-            chainsList.Add(chainObject);
-            chainLengthPos += 0.75f;
-        }
+    public void ChainStatic() {
+        chainCollider.enabled = true;
+        DestoryChains();
+        float chainLengthPos = InstantiateChain(chain, false, this.gameObject);
         CombineMeshes(this.gameObject);
         DestoryChains();
-        float chainSizePos = 0;
-        for (int i = 0; i < chainSize; i++) {
-            GameObject chainObject = Instantiate(parent, parent.transform.position + new Vector3(0, 0, chainSizePos), new Quaternion(0, 0, 0, 0), parent.transform);
-            chainsList.Add(chainObject);
-            chainSizePos += 1f;
-        }
+
+        float chainSizePos = InstantiateChain(chain, true, this.gameObject);
         CombineMeshes(this.gameObject);
+
         UpdateCollider(chainLengthPos, chainSizePos);
         DestoryChains();
+    }
+
+    public void ChainPhysics() {
+        chainCollider.center = Vector3.zero;
+        chainCollider.size = Vector3.zero;
+        chainCollider.enabled = false;
+        DestoryChains();
+        GameObject storeChains = new GameObject("ChainsLinked");
+        GameObject makeStoreChain = Instantiate(storeChains, this.transform);
+
+        GameObject startChain = new GameObject("Anchor Chain");
+        startChain.AddComponent<Rigidbody>();
+        Rigidbody startChainRb = startChain.GetComponent<Rigidbody>();
+        startChainRb.isKinematic = true;
+
+        this.GetComponent<MeshFilter>().sharedMesh.Clear();
+
+        GameObject chainObject;
+        chainObject = Instantiate(startChain, this.transform.position + new Vector3(-0.6f, 0, 0), new Quaternion(-180, 0, -180, 0), makeStoreChain.transform);
+        chainsList.Add(chainObject);
+
+        float chainLength = InstantiateChain(chainPhysics, false, makeStoreChain);
+
+        chainObject = Instantiate(startChain, this.transform.position + new Vector3(chainLength - 0.75f + 0.6f, 0, 0), new Quaternion(-180, 0, -180, 0), makeStoreChain.transform);
+        chainsList.Add(chainObject);
+        SetHingePoints();
+        ExcludeLayers();
+
+        chainsList = new List<GameObject>();
+
+        InstantiateChain(null, true, makeStoreChain);
+
+        DestroyImmediate(startChain);
+        DestroyImmediate(storeChains);
+        DestroyImmediate(makeStoreChain);
+    }
+
+    public float InstantiateChain(GameObject chain, bool isSize, GameObject isStatic) {
+        GameObject chainObject;
+        float chainLengthPos = 0;
+        int transformLength = isSize ? chainSize : chainLength;
+        for (int i = 0; i < transformLength; i++) {
+            if (isSize) {
+                chainObject = Instantiate(isStatic, this.transform.position + new Vector3(0, 0, chainLengthPos), new Quaternion(0, 0, 0, 0), this.transform);
+                chainLengthPos += 1f;
+            } else {
+                chainObject = Instantiate(chain, this.transform.position + new Vector3(chainLengthPos, 0, 0), Quaternion.Euler(0, 90, 0), isStatic.transform);
+                chainLengthPos += 0.75f;
+            }
+            chainsList.Add(chainObject);
+        }
+        return chainLengthPos;
+    }
+
+    public void ExcludeLayers() {
+        for (int i = 1; i < chainsList.Count - 2; i++) {
+            CapsuleCollider collider = chainsList[i].GetComponent<CapsuleCollider>();
+            collider.excludeLayers = LayerMask.GetMask("Water");
+        }
+    }
+
+    public void SetHingePoints() {
+        HingeJoint hinge;
+        int lastChain = chainsList.Count-2;
+        for (int i = 1; i <= lastChain; i++) {
+            hinge = chainsList[i].GetComponent<HingeJoint>();
+            hinge.connectedBody = chainsList[i - 1].GetComponent<Rigidbody>();
+        }
+        chainsList[lastChain].AddComponent<HingeJoint>();
+        hinge = (HingeJoint)chainsList[lastChain].GetComponentAtIndex(chainsList[lastChain].GetComponentCount()-1);
+        hinge.connectedBody = chainsList[lastChain + 1].GetComponent<Rigidbody>();
+        hinge.anchor = new Vector3(0, 0, 0.5f);
     }
 
     public void DestoryChains() {
@@ -77,20 +146,22 @@ public class CreateChainEditor : MonoBehaviour
 #if UNITY_EDITOR
 [CustomEditor(typeof(CreateChainEditor))]
 public class MakeChainEditor : Editor {
-    SerializedProperty newSizeY;
-    private void OnEnable()
-    {
-        newSizeY = serializedObject.FindProperty("orgSizeY");
-    }
+    bool toggle = false;
+    string staticChain = "Create Static Chain";
+    string physcisChain = "Create Chain With Physics";
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
         serializedObject.Update();
         CreateChainEditor chainEditor = (CreateChainEditor)target;
-
-        if (GUILayout.Button("Create Chain")) {
-            chainEditor.InstantiateChain();
+        toggle = EditorGUILayout.Toggle("Physics On", toggle);
+        string chain = toggle ? physcisChain : staticChain;
+        if (GUILayout.Button(chain)) {
+            if (toggle) {
+                chainEditor.ChainPhysics();
+            } else {
+                chainEditor.ChainStatic();
+            }
         }
-
         serializedObject.ApplyModifiedProperties();
     }
 }

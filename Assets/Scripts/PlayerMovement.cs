@@ -28,19 +28,19 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown("k")) {
             form = 1;
             body.mass = 1;
-            this.gameObject.layer = layerWater;
+            this.gameObject.transform.GetChild(1).gameObject.layer = layerWater;
             //Debug.Log("Current layer: " + this.gameObject.layer);
         }
         if (Input.GetKeyDown("l")) {
             form = 0;
             body.mass = 10;
-            this.gameObject.layer = layerDefault;
+            this.gameObject.transform.GetChild(1).gameObject.layer = layerDefault;
             //Debug.Log("Current layer: " + this.gameObject.layer);
         }
         if (Input.GetKeyDown("j")) {
             form = 2;
             body.mass = 15;
-            this.gameObject.layer = layerWater;
+            this.gameObject.transform.GetChild(1).gameObject.layer = layerWater;
             //Debug.Log("Current layer: " + this.gameObject.layer);
         }
         if (form == 0) {
