@@ -10,13 +10,11 @@ public enum State {
 
 public class PlayerAnimationController : MonoBehaviour
 {
-    public SmokePlaneCollider smokePlaneCollider;
     public bool[] getButtonPress;
     private State oldState;
     
     private void Start()
     {
-        smokePlaneCollider = GetComponent<SmokePlaneCollider>();
         oldState = State.Ice;
         getButtonPress = new bool[]
         {
@@ -32,7 +30,6 @@ public class PlayerAnimationController : MonoBehaviour
             ChangeAnimation(State.Ice);
         }
         if (Input.GetKeyDown(KeyCode.K) && getButtonPress[1]) {
-            smokePlaneCollider.PlacePlaneCollider();
             ChangeAnimation(State.Smoke);
         }
         if (Input.GetKeyDown(KeyCode.J) && getButtonPress[2]) {

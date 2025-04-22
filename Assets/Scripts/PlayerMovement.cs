@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public SkinnedMeshRenderer iceMaterial;
     [SerializeField] public bool[] keys;
     [SerializeField] private int form = 0;
     [SerializeField] private float speed = 5;
@@ -45,12 +46,20 @@ public class Player : MonoBehaviour
         }
         if (form == 0) {
             body.velocity = new Vector3(Input.GetAxis("Horizontal") * speed, body.velocity.y, body.velocity.z);
+            iceMaterial.material.SetVector("_ScrollSpeed", new Vector2(0f, 0f));
         }
         else if (form == 1) {
             body.velocity = new Vector3(body.velocity.x, floatSpeed, body.velocity.z);
         }
         else if (form == 2) {
             body.velocity = new Vector3(Input.GetAxis("Horizontal") * speed  * waterSpeedReduction, body.velocity.y, body.velocity.z);
+            if (Input.GetAxis("Horizontal") > 0) {
+                iceMaterial.material.SetVector("_ScrollSpeed", new Vector2(-1.5f, -1.5f));
+            } else if (Input.GetAxis("Horizontal") < 0) {
+                iceMaterial.material.SetVector("_ScrollSpeed", new Vector2(1.5f, 1.5f));
+            } else {
+                iceMaterial.material.SetVector("_ScrollSpeed", new Vector2(0f, 1.5f));
+            }
         }
     }
 }

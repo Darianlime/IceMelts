@@ -16,7 +16,6 @@ public class Ice : MonoBehaviour
     public float yCenter = 0.23f;
     public SkinnedMeshRenderer meshRendererOutside;
     public SkinnedMeshRenderer meshRendererInside;
-
     private float startTime = 0f;
     private void Awake()
     {
