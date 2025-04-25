@@ -37,7 +37,7 @@ public class Ice : MonoBehaviour
     }
 
     public void WaterCollider() {
-        boxCollider.size = new Vector3(7.5f, 0.5f, 2.1f);
+        boxCollider.size = new Vector3(6f, 0.5f, 2.1f);
         boxCollider.center = new Vector3(0, 0.23f, 0);
     }
 

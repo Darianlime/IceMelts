@@ -22,7 +22,7 @@ public class CreateChainEditor : MonoBehaviour
         chainCollider = GetComponent<BoxCollider>();
     }
 
-    public void ChainStatic() {
+    public void ChainStatic(bool isVertical) {
         chainCollider.enabled = true;
         DestoryChains();
         float chainLengthPos = InstantiateChain(chain, false, this.gameObject);
@@ -34,9 +34,10 @@ public class CreateChainEditor : MonoBehaviour
 
         UpdateCollider(chainLengthPos, chainSizePos);
         DestoryChains();
+        this.transform.rotation = isVertical ? Quaternion.Euler(0, -90, -90) : Quaternion.Euler(0, 0, 0);
     }
 
-    public void ChainPhysics() {
+    public void ChainPhysics(bool isVertical) {
         chainCollider.center = Vector3.zero;
         chainCollider.size = Vector3.zero;
         chainCollider.enabled = false;
@@ -69,6 +70,7 @@ public class CreateChainEditor : MonoBehaviour
         DestroyImmediate(startChain);
         DestroyImmediate(storeChains);
         DestroyImmediate(makeStoreChain);
+        this.transform.rotation = isVertical ? Quaternion.Euler(0, -90, -90) : Quaternion.Euler(0, 0, 0);
     }
 
     public float InstantiateChain(GameObject chain, bool isSize, GameObject isStatic) {
@@ -100,12 +102,15 @@ public class CreateChainEditor : MonoBehaviour
         int lastChain = chainsList.Count-2;
         for (int i = 1; i <= lastChain; i++) {
             hinge = chainsList[i].GetComponent<HingeJoint>();
+            chainsList[i].GetComponent<HingeJoint>().axis = new Vector3(0,0,1);
             hinge.connectedBody = chainsList[i - 1].GetComponent<Rigidbody>();
         }
+        chainsList[1].GetComponent<HingeJoint>().axis = new Vector3(0,1,0);
         chainsList[lastChain].AddComponent<HingeJoint>();
         hinge = (HingeJoint)chainsList[lastChain].GetComponentAtIndex(chainsList[lastChain].GetComponentCount()-1);
         hinge.connectedBody = chainsList[lastChain + 1].GetComponent<Rigidbody>();
         hinge.anchor = new Vector3(0, 0, 0.5f);
+        hinge.axis = new Vector3(0, 1, 0);
     }
 
     public void DestoryChains() {
@@ -147,19 +152,23 @@ public class CreateChainEditor : MonoBehaviour
 [CustomEditor(typeof(CreateChainEditor))]
 public class MakeChainEditor : Editor {
     bool toggle = false;
+    bool toggleVertical = false;
     string staticChain = "Create Static Chain";
     string physcisChain = "Create Chain With Physics";
+
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
         serializedObject.Update();
         CreateChainEditor chainEditor = (CreateChainEditor)target;
         toggle = EditorGUILayout.Toggle("Physics On", toggle);
         string chain = toggle ? physcisChain : staticChain;
+        toggleVertical = EditorGUILayout.Toggle("Vertical?", toggleVertical);
+        chain = toggleVertical ? chain + " Vertical" : chain + " Horizontal";
         if (GUILayout.Button(chain)) {
             if (toggle) {
-                chainEditor.ChainPhysics();
+                chainEditor.ChainPhysics(toggleVertical);
             } else {
-                chainEditor.ChainStatic();
+                chainEditor.ChainStatic(toggleVertical);
             }
         }
         serializedObject.ApplyModifiedProperties();
