@@ -60,7 +60,7 @@ public class CreateChainEditor : MonoBehaviour
 
         chainObject = Instantiate(startChain, this.transform.position + new Vector3(chainLength - 0.75f + 0.6f, 0, 0), new Quaternion(-180, 0, -180, 0), makeStoreChain.transform);
         chainsList.Add(chainObject);
-        SetHingePoints();
+        SetHingePoints(isVertical);
         ExcludeLayers();
 
         chainsList = new List<GameObject>();
@@ -97,20 +97,22 @@ public class CreateChainEditor : MonoBehaviour
         }
     }
 
-    public void SetHingePoints() {
+    public void SetHingePoints(bool isVertical) {
         HingeJoint hinge;
         int lastChain = chainsList.Count-2;
         for (int i = 1; i <= lastChain; i++) {
             hinge = chainsList[i].GetComponent<HingeJoint>();
-            chainsList[i].GetComponent<HingeJoint>().axis = new Vector3(0,0,1);
+            chainsList[i].GetComponent<HingeJoint>().axis = isVertical ? new Vector3(0,0,1) : new Vector3(1,0,0);
             hinge.connectedBody = chainsList[i - 1].GetComponent<Rigidbody>();
         }
-        chainsList[1].GetComponent<HingeJoint>().axis = new Vector3(0,1,0);
         chainsList[lastChain].AddComponent<HingeJoint>();
         hinge = (HingeJoint)chainsList[lastChain].GetComponentAtIndex(chainsList[lastChain].GetComponentCount()-1);
         hinge.connectedBody = chainsList[lastChain + 1].GetComponent<Rigidbody>();
         hinge.anchor = new Vector3(0, 0, 0.5f);
-        hinge.axis = new Vector3(0, 1, 0);
+        if (isVertical) {
+            chainsList[1].GetComponent<HingeJoint>().axis = new Vector3(0,1,0);
+            hinge.axis = new Vector3(0, 1, 0);
+        }
     }
 
     public void DestoryChains() {

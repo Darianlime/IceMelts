@@ -88,6 +88,7 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
+    - _CUT_SHAPE_SIZE: 0.75
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -100,10 +101,11 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _MAX_DIST: 200
+    - _MAX_DIST: 100
     - _MAX_STEPS: 300
     - _Metallic: 0
     - _OcclusionStrength: 1
+    - _PLANE_POSITION: 0
     - _POWER_FRESNEL: 12.42
     - _Parallax: 0.005
     - _QueueOffset: 0

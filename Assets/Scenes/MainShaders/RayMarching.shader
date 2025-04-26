@@ -7,6 +7,7 @@ Shader "Unlit/RayMarching"
         _MAX_DIST ("Max Distance", Float) = 100
         _TIME_SCALE ("Time Scale", Float) = 1
         _SHAPE_SIZE ("Shape Size", Float) = 1
+        _CUT_SHAPE_SIZE ("Cut Shape Size", Vector) = (0,0,0)
         _SMOOTHNESS ("Smoothness", Float) = 1
         _POSITION_OFFSET ("Position Offset", Vector) = (0,0,0)
         _BRIGHTNESS ("Brightness", Float) = 1
@@ -19,6 +20,7 @@ Shader "Unlit/RayMarching"
         _SCROLL_SPEED ("Scroll Speed", Vector) = (0,0,0)
         _SCALE ("Scale", Float) = 1
         _POWER_FRESNEL ("Power Fresnel", Float) = 1
+        _PLANE_POSITION ("Plane Position", Float) = 1
     }
     SubShader
     {
@@ -88,6 +90,25 @@ Shader "Unlit/RayMarching"
                 return lerp(d2, d1, h) + k*h*(1.0-h);
             }
 
+            float sdBox(float3 p, float3 b)
+            {
+                float3 q = abs(p) - b;
+                return length(max(q,0.0)) + min(max(q.x,max(q.y,q.z)),0.0);
+            }
+
+            float sdCutSphere(float3 pos, float radius, float planePos)
+            {
+                // sampling independent computations (only depend on shape)
+                float w = sqrt(radius*radius-planePos*planePos);
+
+                // sampling dependant computations
+                float2 q = float2( length(pos.xz), pos.y );
+                float s = max( (planePos-radius)*q.x*q.x+w*w*(planePos+radius-2.0*q.y), planePos*q.x-w*q.y );
+                return (s<0.0) ? length(q)-radius :
+                        (q.x<w) ? planePos - q.y     :
+                                length(q-float2(w,planePos));
+            }
+
             //Gets distance between camera pos and sphere position at the edge of the sphere radius
             float sdSphere(float3 pos, float3 spherePos, float radius) {
                 return length(spherePos - pos) - radius;
@@ -95,8 +116,10 @@ Shader "Unlit/RayMarching"
 
             float _TIME_SCALE;
             float _SHAPE_SIZE;
+            float3 _CUT_SHAPE_SIZE;
             float _SMOOTHNESS;
             float3 _POSITION_OFFSET;
+            float _PLANE_POSITION;
 
             float GetDist(float3 pos) {
                 float t = _Time * _TIME_SCALE;
@@ -111,10 +134,9 @@ Shader "Unlit/RayMarching"
                 float sphere1 = sdSphere(pos, shape1_pos * moveScale, _SHAPE_SIZE * 0.5);
                 float sphere2 = sdSphere(pos, shape2_pos * moveScale, _SHAPE_SIZE * 0.75);
                 float sphere3 = sdSphere(pos, shape3_pos * moveScale, _SHAPE_SIZE);
-                float sphere4 = sdSphere(pos, float3(0.0, 0.0, 0.0), 0.8);
+                //float sphere4 = sdSphere(pos, float3(0.0, 0.0, 0.0), 0.8);
                 float spheres = smoothUnion(sphere1, sphere2, _SMOOTHNESS);
                 spheres = smoothUnion(spheres, sphere3, _SMOOTHNESS);
-                spheres = smoothUnion(spheres, sphere4, _SMOOTHNESS);
 
                 return spheres;
             }
