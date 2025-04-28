@@ -112,12 +112,16 @@ Material:
     - _BlendModePreserveSpecular: 1
     - _CastShadows: 1
     - _Cull: 2
+    - _DeformOffsetSize: 0.25
+    - _DeformSpeed: 6
     - _DstBlend: 1
     - _EMISSION_WEIGHT: 1
     - _IceToWater: 0
     - _METALNESS: 0
     - _Metallic: 0
-    - _Morph: 0.3
+    - _Morph: 0
+    - _NoiseSlider: 0
+    - _NoiseSpeed: 2
     - _Normals: 0.6
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -125,7 +129,7 @@ Material:
     - _REFLECTIONS_ROUGHNESS: 1
     - _REFLECTIONS_WEIGHT: 1
     - _ReceiveShadows: 1
-    - _Scale: 0.91
+    - _Scale: 1.1
     - _ScaleBy: 3.3
     - _Scaleby: 3
     - _Smoothness: 0.619

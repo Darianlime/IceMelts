@@ -11416,6 +11416,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1372057231747496710, guid: 7e97974785b7dda438e1741217049dcb, type: 3}
+      propertyPath: maxRayDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5033231905382094283, guid: 7e97974785b7dda438e1741217049dcb, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5

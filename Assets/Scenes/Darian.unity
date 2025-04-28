@@ -850,9 +850,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 205871614309917470, guid: 7e97974785b7dda438e1741217049dcb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 597926131249798862, guid: 7e97974785b7dda438e1741217049dcb, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372057231747496710, guid: 7e97974785b7dda438e1741217049dcb, type: 3}
+      propertyPath: maxRayDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1467540939926536363, guid: 7e97974785b7dda438e1741217049dcb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4461049458858451109, guid: 7e97974785b7dda438e1741217049dcb, type: 3}
       propertyPath: CollisionModule.type
@@ -905,6 +917,18 @@ PrefabInstance:
     - target: {fileID: 5033231905382094283, guid: 7e97974785b7dda438e1741217049dcb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033231905382094283, guid: 7e97974785b7dda438e1741217049dcb, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5672202160353950762, guid: 7e97974785b7dda438e1741217049dcb, type: 3}
+      propertyPath: MaxDistance
+      value: 8.586228
+      objectReference: {fileID: 0}
+    - target: {fileID: 6176149064698385829, guid: 7e97974785b7dda438e1741217049dcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 8.592987e-31
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6793,7 +6817,7 @@ Transform:
   m_GameObject: {fileID: 669725102}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.97, y: 7.68, z: -42.2}
+  m_LocalPosition: {x: 5.33, y: 7.68, z: -42.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20252,7 +20276,7 @@ GameObject:
   - component: {fileID: 2077050378}
   - component: {fileID: 2077050377}
   - component: {fileID: 2077050381}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
