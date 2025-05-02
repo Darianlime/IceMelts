@@ -45,10 +45,10 @@ public class Door : MonoBehaviour
     }
     public void nextMove() {
         on = true;
-        Debug.Log("player on");
+        //Debug.Log("player on");
     }
     public void moveBack() {
         on = false;
-        Debug.Log("off");
+        //Debug.Log("off");
     }
 }
