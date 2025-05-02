@@ -23,7 +23,7 @@ public class Fan : MonoBehaviour
     }
 
     void OnTriggerStay(Collider other){
-        if(other.tag == "Player") {
+        if(other.tag.Equals("Player")) {
             isInBox = true;
             if (playerBody == null) {
                 playerBody = other.attachedRigidbody;
