@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iceMaterial: {fileID: 6754728078051727964}
-  keys: 
+  keys: 0
   form: 0
   speed: 5
   floatSpeed: 5
@@ -221,7 +221,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 89a49718e24dd42569815405c10dc680, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ac9108e7d566d024ab4b392fd704352b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -317,7 +317,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7ba6fbc7496f6475e9ad9dce369f24f0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: da8e5dd7ed71ba049b31f3db98e52cdb, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -413,7 +413,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0d4c2e7479eb642d3a56aec05a7e2205, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a09f895997b391046bf3996fd5bb9146, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -509,7 +509,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b1c0349d7d40d4f09a3677cdf08b7cda, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c82ac8e518adb1e4ba9bb0f594e59931, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -605,7 +605,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ee60462d054664ae2863f6e093cdbaa1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b31ce3d3cd30c8f42b8db01fb66f836c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -701,7 +701,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c5cd9dcf20c0b4022a4ad3bc730ceae7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 34476263c9b195448b881d604bad70f6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -6022,6 +6022,7 @@ MonoBehaviour:
   yCenter: 0.23
   meshRendererOutside: {fileID: 6754728078051727964}
   meshRendererInside: {fileID: 9003300260595076595}
+  maxRayDistance: 0.5
 --- !u!65 &7836486397434059657
 BoxCollider:
   m_ObjectHideFlags: 0
