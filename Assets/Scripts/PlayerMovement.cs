@@ -23,19 +23,19 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("b")) {
+        if (Input.GetKeyDown("k")) {
             form = 1;
             body.mass = 1;
             this.gameObject.layer = layerWater;
             Debug.Log("Current layer: " + this.gameObject.layer);
         }
-        if (Input.GetKeyDown("v")) {
+        if (Input.GetKeyDown("l")) {
             form = 0;
             body.mass = 10;
             this.gameObject.layer = layerDefault;
             Debug.Log("Current layer: " + this.gameObject.layer);
         }
-        if (Input.GetKeyDown("n")) {
+        if (Input.GetKeyDown("j")) {
             form = 2;
             body.mass = 15;
             this.gameObject.layer = layerWater;
