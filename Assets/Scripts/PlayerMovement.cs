@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public SkinnedMeshRenderer iceMaterial;
-    [SerializeField] public bool[] keys;
+    [SerializeField] public int keys = 0;
     [SerializeField] private int form = 0;
     [SerializeField] private float speed = 5;
     [SerializeField] private float floatSpeed = 5;

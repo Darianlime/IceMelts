@@ -19,7 +19,7 @@ public class Key : MonoBehaviour
     }
     void OnTriggerStay(Collider other){
         if(other.tag == "Player") {
-            player.keys[key] = true;
+            player.keys++;
             transform.position = new Vector3(10000, 1000000, 1000000);
         }
     }

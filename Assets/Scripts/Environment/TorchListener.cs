@@ -20,6 +20,6 @@ public class TorchListener : MonoBehaviour
         
     }
     public void doSomething() {
-        Debug.Log("Did Something");
+        //Debug.Log("Did Something");
     }
 }

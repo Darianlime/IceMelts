@@ -19,10 +19,11 @@ public class KeyDoor : MonoBehaviour
     }
     void OnTriggerStay(Collider other){
         if(other.tag == "Player") {
-            //Debug.Log("touched");
-            //Debug.Log(player.keys[key]);
-            if (player.keys[key] == true) {
-                //Debug.Log(player.keys[key]);
+            Debug.Log("touched");
+            Debug.Log(player.keys);
+            if (player.keys > 0) {
+                player.keys--;
+                Debug.Log(player.keys);
                 transform.parent.gameObject.transform.position = new Vector3(10000, 1000000, 1000000);
             }
         }
