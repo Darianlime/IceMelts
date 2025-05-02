@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iceMaterial: {fileID: 6754728078051727964}
-  keys: 
+  keys: 0
   form: 0
   speed: 5
   floatSpeed: 5
@@ -1078,7 +1078,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smokeParticle: {fileID: 4461049458858451109}
-  planeCollider: {fileID: 0}
 --- !u!198 &4461049458858451109
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -6022,6 +6021,7 @@ MonoBehaviour:
   yCenter: 0.23
   meshRendererOutside: {fileID: 6754728078051727964}
   meshRendererInside: {fileID: 9003300260595076595}
+  maxRayDistance: 0.5
 --- !u!65 &7836486397434059657
 BoxCollider:
   m_ObjectHideFlags: 0

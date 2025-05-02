@@ -26,8 +26,6 @@ public class Ice : MonoBehaviour
         AnimationActions.current.IceDissolve += DissolveIce;
         AnimationActions.current.IceMelt += IceToWater;
         AnimationActions.current.WaterToIce += WaterToIce;
-        AnimationActions.current.IceCollider += IceCollider;
-        AnimationActions.current.WaterCollider += WaterCollider;
     }
 
     private void Start() {
@@ -52,7 +50,7 @@ public class Ice : MonoBehaviour
             } 
         } else {
             animatorOutside.SetBool("isFallingDone", false);
-            if (animatorOutside.GetCurrentAnimatorStateInfo(0).IsName("IceToWaterFalling")) {
+            if (!animatorOutside.GetCurrentAnimatorStateInfo(0).IsName("IceToWaterOutside")) {
                 IceCollider();
             }
         }
@@ -109,7 +107,5 @@ public class Ice : MonoBehaviour
         AnimationActions.current.IceDissolve -= DissolveIce;
         AnimationActions.current.IceMelt -= IceToWater;
         AnimationActions.current.WaterToIce -= WaterToIce;
-        AnimationActions.current.IceCollider -= IceCollider;
-        AnimationActions.current.WaterCollider -= WaterCollider;
     }
 }
