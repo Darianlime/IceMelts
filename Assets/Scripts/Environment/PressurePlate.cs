@@ -26,9 +26,11 @@ public class PressurePlate : MonoBehaviour
     void OnTriggerStay(Collider other){
         if(other.tag == "Player") {
             if (!pressed) {
+                Debug.Log("pressed");
                 pressed = true;
                 Vector3 newPos = originalPos;
                 if (!on) {
+                    
                     activate.Invoke();
                     on = true;
                     newPos.y = originalPos.y - 0.30f;
@@ -46,6 +48,7 @@ public class PressurePlate : MonoBehaviour
 
     void OnTriggerExit(Collider other){
         if(other.tag == "Player") {
+            Debug.Log("unpressed");
             pressed = false;
             transform.parent.gameObject.transform.position = originalPos;
 
