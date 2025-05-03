@@ -21,8 +21,8 @@ public class CloneCollider : MonoBehaviour
         clonescript.collisionTriggered = true;        
 
         // Positioning the clones near the collision point
-        if (clonescript.playerClonePrefab != null) {
-            clonescript.playerClonePrefab.transform.position = collision.transform.position + new Vector3(0, 1, 0);
+        if (clonescript.playerClonePrefab != null && collision.gameObject.CompareTag("Player")) {
+            clonescript.playerClonePrefab.transform.position = collision.transform.position + new Vector3(0, 0, 0);
         }
     }
 }
