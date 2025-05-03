@@ -11,14 +11,14 @@ public class CloneScript : MonoBehaviour
 
     private GameObject cloneBlock;
     public GameObject playerClonePrefab;
-    public GameObject activeClone;
+    public GameObject activeClone = null;
     public bool isDone = false;
     public bool collisionTriggered = false;
 
 
     void Start()
     {
-        playerClonePrefab = GameObject.Find("Player");
+        //playerClonePrefab = GameObject.Find("Player");
     }
    
     // Update is called once per frame
@@ -27,12 +27,14 @@ public class CloneScript : MonoBehaviour
         if (collisionTriggered == true) {
             if (!isDone) {
                 // Destroy the previous clone if it exists
-                if (activeClone != null) {
-                    Destroy(activeClone);
-                }
+                // if (activeClone != null) {
+                //     Destroy(activeClone);
+                // }
 
                 // Create a new clone
-                activeClone = Instantiate(playerClonePrefab, playerClonePrefab.transform.position, Quaternion.identity);
+                //playerClonePrefab.transform.position = this.transform.position;
+                playerClonePrefab.SetActive(true);
+                //activeClone = Instantiate(playerClonePrefab, playerClonePrefab.transform.position, Quaternion.identity);
                 isDone = true;
             }
 

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CloneCollider : MonoBehaviour
 {
-    public CloneScript clonescript;
-    // Start is called before the first frame update
+    public CloneScript clonescript;   
+
     void Start()
     {
         
@@ -21,6 +21,8 @@ public class CloneCollider : MonoBehaviour
         clonescript.collisionTriggered = true;        
 
         // Positioning the clones near the collision point
-        clonescript.activeClone.transform.position = collision.transform.position + new Vector3(0, 1, 0);
+        if (clonescript.playerClonePrefab != null) {
+            clonescript.playerClonePrefab.transform.position = collision.transform.position + new Vector3(0, 1, 0);
+        }
     }
 }

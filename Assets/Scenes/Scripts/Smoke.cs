@@ -6,7 +6,6 @@ using UnityEngine;
 public class Smoke : MonoBehaviour
 {
     public ParticleSystem smokeParticle;
-    public GameObject planeCollider;
     private bool stoppedSmoke = false;  
     // Start is called before the first frame update
     private void Awake() {
