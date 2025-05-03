@@ -17,7 +17,8 @@ public class MergeScript : MonoBehaviour
     void Update()
     {
         if (MergeCollisionTriggered == true) {
-            Destroy(clonescript.activeClone);
+            //Destroy(clonescript.activeClone);
+            clonescript.playerClonePrefab.SetActive(false);
             
             phasechange.cloneTriggered = false;
             clonescript.isDone = false;

@@ -17,8 +17,6 @@ public class AnimationActions : MonoBehaviour
     public event Action WaterToIce;
     public event Action SmokeEmitt;
     public event Action SmokeStop;
-    public event Action IceCollider;
-    public event Action WaterCollider;
     public Dictionary<State, Dictionary<State, List<Action>>> iceAnimations = new();
     public Dictionary<State, Dictionary<State, List<Action>>> waterAnimations = new();
     public Dictionary<State, Dictionary<State, List<Action>>> smokeAnimations = new();
@@ -33,18 +31,18 @@ public class AnimationActions : MonoBehaviour
     void Start()
     {
         //Ice Actions
-        iceStateAnim.Add(State.Water, new List<Action> { WaterCollider, IceMelt});
-        iceStateAnim.Add(State.Smoke, new List<Action> { IceCollider, SmokeEmitt, IceDissolve });
+        iceStateAnim.Add(State.Water, new List<Action> { IceMelt});
+        iceStateAnim.Add(State.Smoke, new List<Action> { SmokeEmitt, IceDissolve });
         iceAnimations.Add(State.Ice, iceStateAnim);
 
         //Water Actions
-        waterStateAnim.Add(State.Ice, new List<Action> { IceCollider, WaterToIce});
-        waterStateAnim.Add(State.Smoke, new List<Action> { IceCollider, SmokeEmitt, IceDissolve });
+        waterStateAnim.Add(State.Ice, new List<Action> { WaterToIce});
+        waterStateAnim.Add(State.Smoke, new List<Action> { SmokeEmitt, IceDissolve });
         waterAnimations.Add(State.Water, waterStateAnim);
        
         //Smoke Actions
-        smokeStateAnim.Add(State.Ice, new List<Action> { IceCollider, SmokeStop, IceGrow });
-        smokeStateAnim.Add(State.Water, new List<Action> { WaterCollider, SmokeStop, IceMelt});
+        smokeStateAnim.Add(State.Ice, new List<Action> { SmokeStop, IceGrow });
+        smokeStateAnim.Add(State.Water, new List<Action> { SmokeStop, IceMelt});
         smokeAnimations.Add(State.Smoke, smokeStateAnim);
     }
 
