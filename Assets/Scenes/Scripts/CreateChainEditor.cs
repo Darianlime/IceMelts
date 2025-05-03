@@ -91,7 +91,7 @@ public class CreateChainEditor : MonoBehaviour
     }
 
     public void ExcludeLayers() {
-        for (int i = 1; i < chainsList.Count - 2; i++) {
+        for (int i = 1; i < chainsList.Count - 1; i++) {
             CapsuleCollider collider = chainsList[i].GetComponent<CapsuleCollider>();
             collider.excludeLayers = LayerMask.GetMask("Water");
         }
