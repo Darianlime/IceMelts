@@ -5,40 +5,26 @@ using UnityEngine;
 public class CloneScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public PhaseChange phasechange;
+    //public PhaseChange phasechange;
     public MergeScript mergescript;
-
-
-    private GameObject cloneBlock;
     public GameObject playerClonePrefab;
     public GameObject activeClone = null;
     public bool isDone = false;
     public bool collisionTriggered = false;
 
 
-    void Start()
+    void Awake()
     {
-        //playerClonePrefab = GameObject.Find("Player");
+        playerClonePrefab = Instantiate(playerClonePrefab, new Vector3(999,999,0), Quaternion.identity);
     }
-   
-    // Update is called once per frame
-    void Update()
-    {
+
+    public void Clone() {
         if (collisionTriggered == true) {
             if (!isDone) {
-                // Destroy the previous clone if it exists
-                // if (activeClone != null) {
-                //     Destroy(activeClone);
-                // }
-
-                // Create a new clone
-                //playerClonePrefab.transform.position = this.transform.position;
                 playerClonePrefab.SetActive(true);
-                //activeClone = Instantiate(playerClonePrefab, playerClonePrefab.transform.position, Quaternion.identity);
                 isDone = true;
             }
 
-            phasechange.cloneTriggered = true;
             collisionTriggered = false;
             mergescript.MergeCollisionTriggered = false;
             isDone = true;

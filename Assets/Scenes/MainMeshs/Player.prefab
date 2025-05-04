@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 205871614309917470}
   serializedVersion: 2
   m_LocalRotation: {x: -6.123234e-17, y: 1, z: 6.123234e-17, w: -3.7493994e-33}
-  m_LocalPosition: {x: 0, y: 1.120021, z: 0.000086381}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -52,7 +52,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f6989a1db595cbe4c86a43cff370eef8, type: 2}
+  - {fileID: -876546973899608171, guid: 3a9a39cf61c60ef4bab53b930e79b34d, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -879,7 +879,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9813c1d732629a343bda834f20299ce5, type: 2}
+  - {fileID: -876546973899608171, guid: ab192d9b5d8f50040b26c07e6c6be9d3, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6021,7 +6021,7 @@ MonoBehaviour:
   yCenter: 0.23
   meshRendererOutside: {fileID: 6754728078051727964}
   meshRendererInside: {fileID: 9003300260595076595}
-  maxRayDistance: 0.5
+  maxRayDistance: 2
 --- !u!65 &7836486397434059657
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -46,6 +46,8 @@ public class Ice : MonoBehaviour
                 animatorOutside.SetBool("isFallingDone", true);
                 if (animatorOutside.GetCurrentAnimatorStateInfo(0).IsName("IceToWaterOutside")) {
                     WaterCollider();
+                } else if (animatorOutside.GetCurrentAnimatorStateInfo(0).IsName("WaterToIceOutside")) {
+                    IceCollider();
                 }
             } 
         } else {

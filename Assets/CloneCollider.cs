@@ -1,28 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CloneCollider : MonoBehaviour
 {
-    public CloneScript clonescript;   
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public CloneScript clonescript;
 
     private void OnCollisionEnter(Collision collision) {
-        clonescript.collisionTriggered = true;        
 
         // Positioning the clones near the collision point
-        if (clonescript.playerClonePrefab != null && collision.gameObject.CompareTag("Player")) {
+        if (collision.gameObject.CompareTag("Player")) {
+            clonescript.collisionTriggered = true;        
             clonescript.playerClonePrefab.transform.position = collision.transform.position + new Vector3(0, 0, 0);
+            clonescript.Clone();
         }
+    }
+
+    private void OnCollisionStay(Collision collision) {
+        clonescript.collisionTriggered = true;        
     }
 }
