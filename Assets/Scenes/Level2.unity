@@ -11147,7 +11147,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3287270644732172837, guid: 8905bc6da06734c3e8acda8369326383, type: 3}
       propertyPath: nextLevel
-      value: LevelSelect
+      value: Level3
       objectReference: {fileID: 0}
     - target: {fileID: 3287270644732172837, guid: 8905bc6da06734c3e8acda8369326383, type: 3}
       propertyPath: fadeScript
