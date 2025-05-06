@@ -1,9 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class Ice : MonoBehaviour
